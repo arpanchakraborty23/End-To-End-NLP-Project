@@ -1,9 +1,9 @@
 import os,sys
 
-from textsummarizer.logging.logger import logging
-from textsummarizer.exception.exception import CustomException
-from textsummarizer.component.Data_Ingestion import DataIngestion
-from textsummarizer.config.config_manager import ConfiManager
+from src.tsp.logging.logger import logging
+from src.tsp.exception.exception import CustomException
+from src.tsp.component.Data_Ingestion import DataIngestion
+from src.tsp.config.config_manager import ConfiManager
 
 class DataIngestionPipline:
     def __init__(self) -> None:
@@ -21,7 +21,7 @@ class DataIngestionPipline:
     
 if __name__=='__main__':
     try:
-        logging.info(f'<<<<<<<<<<<<<<<< Data Ingestion Started >>>>>>>>>>>>>>>>>')
+        logging.info(f'<<<<<<<<<<<<<<<<<<<<< Data Ingestion Started >>>>>>>>>>>>>>>>>>>>>>>')
         object=DataIngestionPipline()
         object.IngestionPipline()
         logging.info(f'<<<<<<<<<<<<<<<<<<<<<<< Data Ingestion completed >>>>>>>>>>>>>>>>>>')

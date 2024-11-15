@@ -8,18 +8,18 @@ from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
-from textsummarizer.logging.logger import logging
-from textsummarizer.exception.exception import CustomException
+from src.tsp.logging.logger import logging
+from src.tsp.exception.exception import CustomException
 from box import ConfigBox
 
 
 
-@ensure_annotations
+
 def read_yaml(file_path:Path):
     try:
         with open(file_path) as f:
             file=yaml.safe_load(f)
-            logging.info(f'Yaml file {file_path} created')
+            logging.info(f'Yaml file {file_path} read completed')
         return ConfigBox(file)
     except Exception as e:
         logging.info(f' ymal file is empty: {str(e)}')
@@ -51,9 +51,5 @@ def save_json(data,filename):
         with open(filename,'w') as j:
             json.dump(data,j,indent=4)
 
-@ensure_annotations
-def load_bin(path:Path):
-    data=joblib.load(path)
-    logging.info(f'binary file load at {path}')
-    return data
+
         

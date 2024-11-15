@@ -3,9 +3,9 @@ import sys
 import requests
 import zipfile
 
-from textsummarizer.logging.logger import logging
-from textsummarizer.exception.exception import CustomException
-from textsummarizer.entity.config_entity import DataIngestionConfig
+from src.tsp.logging.logger import logging
+from src.tsp.exception.exception import CustomException
+from src.tsp.entity.config_entity import DataIngestionConfig
 
 
 class DataIngestion:
@@ -45,9 +45,10 @@ class DataIngestion:
 
     def initiate_data_ingestion(self):
         try:
-            url = self.config.dir
+            url = self.config.url
             download_dir = self.config.local_dir
             unzip_dir = self.config.unzip_dir
+            logging.info(f'url : {url}')
 
             self.download_data(url=url, download_dir=download_dir)
             self.extract_data(download_dir=download_dir, unzip_dir=unzip_dir)
