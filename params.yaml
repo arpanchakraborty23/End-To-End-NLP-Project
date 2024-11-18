@@ -5,5 +5,5 @@ TraningArguments:
   weight_decay: 0.01
   logging_steps: 10
   eval_steps: 500
-  save_steps: 1e06
+  save_steps: 10
   gradient_accumlation_steps: 16

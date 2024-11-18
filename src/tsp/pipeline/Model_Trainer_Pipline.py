@@ -15,7 +15,7 @@ class ModelTrainerPipline:
 
             model_trainer_config=model_trainer_config_manager.get_model_config()
             model_trainer=ModelTrainer(config=model_trainer_config)
-            model_trainer.initate_model_trainer()
+            model_trainer.initiate_model_trainer()
         except Exception as e:
                 logging.info(f'Error in download Data {str(e)}')
                 raise CustomException(e,sys)

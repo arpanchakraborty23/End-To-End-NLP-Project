@@ -15,7 +15,7 @@ def get_requirements(filepth:str)->[List]:
 
 setup(
     name='Nlp-Project',
-    version='0.3',
+    version='0.2',
     author='Arpanchakraborty23',
     author_email='arpanchakaborty500@gmail.com',
     url='https:\\github.com/arpanchakraborty23/End-To-End-NLP-Project.git',

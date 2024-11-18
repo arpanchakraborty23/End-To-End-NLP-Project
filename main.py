@@ -26,14 +26,14 @@ class TrainPipline:
 
             data_transformation_config=config.get_data_transformation_config()
             data_transformation=DataTransformation(config=data_transformation_config)
-            data_transformation.initate_data_transformation()
+            data_transformation.initiate_data_transformation()
             logging.info(f'<<<<<<<<<<<<<<<<<<<<< Data Transformation Completed >>>>>>>>>>>>>>>>>>>>>>>')
 
             logging.info(f'<<<<<<<<<<<<<<<<<<<<< Model Trainer Started >>>>>>>>>>>>>>>>>>>>>>>')
             
             model_trainer_config=config.get_model_config()
             model_trainer=ModelTrainer(config=model_trainer_config)
-            model_trainer.initate_model_trainer()
+            model_trainer.initiate_model_trainer()
 
             logging.info(f'<<<<<<<<<<<<<<<<<<<<<<< Model Trainer completed >>>>>>>>>>>>>>>>>>')
             

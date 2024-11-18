@@ -15,7 +15,7 @@ class DataTransformationPipline:
 
             data_Transformation_config=data_Transformation_config_manager.get_data_transformation_config()
             data_Transformation=DataTransformation(config=data_Transformation_config)
-            data_Transformation.initate_data_transformation()
+            data_Transformation.initiate_data_transformation()
         except Exception as e:
                 logging.info(f'Error in download Data {str(e)}')
                 raise CustomException(e,sys)
