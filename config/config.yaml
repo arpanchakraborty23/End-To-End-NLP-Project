@@ -1,7 +1,14 @@
-artifacts_root: Artifact
+artifacts_root: Artifacts
 
 Data_Ingestion:
   dir: Artifacts/data_ingestion
   url: https://github.com/krishnaik06/datasets/raw/refs/heads/main/summarizer-data.zip
   local_dir: Artifacts/data_ingestion/zip_data/data.zip
   unzip_dir: Artifacts/data_ingestion/data  
+
+Data_Transformation:
+  dir: Artifacts/data_transformation
+  data_path: Artifacts\data_ingestion\data\samsum_dataset
+  tokenizer: microsoft/Phi-3-mini-4k-instruct
+  transform_data: Artifacts/data_transformation
+  

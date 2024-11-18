@@ -8,4 +8,4 @@
 4. config manager
 5. components ---------> Data Ingestion,Data Transformation,  Model Training
 6. Pipline   ----------> Traning Pipline,Prediction Pipline
-7. Frontend ui ---------> web Api usong fast api
+7. Frontend ui ---------> web Api using fast api
