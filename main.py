@@ -4,6 +4,7 @@ from src.tsp.exception.exception import CustomException
 from src.tsp.config.config_manager import ConfiManager
 from src.tsp.component.Data_Ingestion import DataIngestion
 from src.tsp.component.Data_Transformation import DataTransformation
+from src.tsp.component.Model_trainer import ModelTrainer
 
 
 
@@ -27,6 +28,14 @@ class TrainPipline:
             data_transformation=DataTransformation(config=data_transformation_config)
             data_transformation.initate_data_transformation()
             logging.info(f'<<<<<<<<<<<<<<<<<<<<< Data Transformation Completed >>>>>>>>>>>>>>>>>>>>>>>')
+
+            logging.info(f'<<<<<<<<<<<<<<<<<<<<< Model Trainer Started >>>>>>>>>>>>>>>>>>>>>>>')
+            
+            model_trainer_config=config.get_model_config()
+            model_trainer=ModelTrainer(config=model_trainer_config)
+            model_trainer.initate_model_trainer()
+
+            logging.info(f'<<<<<<<<<<<<<<<<<<<<<<< Model Trainer completed >>>>>>>>>>>>>>>>>>')
             
         except Exception as e:
             logging.info(f'Error cooured {str(e)}')

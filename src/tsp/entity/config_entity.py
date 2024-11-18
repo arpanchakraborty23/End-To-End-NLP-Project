@@ -14,4 +14,18 @@ class DataTransformationConfig:
     data_path:Path
     tokenizer:str
     transform_data:Path
+
+@dataclass
+class ModelTrainerConfig:
+    dir:Path
+    data_path: Path
+    model: str
+    num_train_epochs: int
+    warmup_steps: int
+    per_device_train_batch_size: int
+    weight_decay: float
+    logging_steps: int
+    eval_steps: int
+    save_steps: float
+    gradient_accumulation_steps: int
     

@@ -12,3 +12,7 @@ Data_Transformation:
   tokenizer: microsoft/Phi-3-mini-4k-instruct
   transform_data: Artifacts/data_transformation
   
+Model_Trainer:
+  dir: Artifacts/model_Trainer
+  data_path: Artifacts\data_transformation\transform
+  model: microsoft/Phi-3-mini-4k-instruct

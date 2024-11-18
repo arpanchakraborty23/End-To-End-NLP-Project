@@ -4,7 +4,7 @@ import sys
 from src.tsp.utils.main_utils import read_yaml,create_dir
 from src.tsp.logging.logger import logging
 from src.tsp.exception.exception import CustomException
-from src.tsp.entity.config_entity import DataIngestionConfig,DataTransformationConfig
+from src.tsp.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig
 from src.tsp.constants import *
 
 class ConfiManager:
@@ -44,5 +44,29 @@ class ConfiManager:
         
         except Exception as e:
             logging.info(f' erorr in data transfom config {str(e)}')
+            raise CustomException(e,sys)
+        
+    def get_model_config(self):
+        try:
+            config=self.config.Model_Trainer
+            params=self.params.TraningArguments
+
+            model_train_config=ModelTrainerConfig(
+                dir=config.dir,
+                data_path=config.data_path,
+                model=config.model,
+                num_train_epochs = params.num_train_epochs,
+                warmup_steps = params.warmup_steps,
+                per_device_train_batch_size = params.per_device_train_batch_size,
+                weight_decay = params.weight_decay,
+                logging_steps = params.logging_steps,
+                eval_steps = params.eval_steps,
+                save_steps = params.save_steps,
+                gradient_accumulation_steps = params.gradient_accumlation_steps
+            )
+            
+            return model_train_config
+        except Exception as e:
+            logging.info(f' erorr in model train config {str(e)}')
             raise CustomException(e,sys)
     
