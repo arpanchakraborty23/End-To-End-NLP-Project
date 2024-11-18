@@ -37,8 +37,7 @@ class ConfiManager:
             data_transformation_config=DataTransformationConfig(
                 dir=config.dir,
                 data_path=config.data_path,
-                tokenizer=config.tokenizer,
-                transform_data=config.transform_data
+                tokenizer=config.tokenizer
             )
             return data_transformation_config
         

@@ -28,26 +28,15 @@ class DataTransformation:
 
     def convert_examples_to_features(self, example_batch: dict) -> dict:
         try:
-            input_encodings = self.tokenizer(
-                example_batch["dialogue"],
-                max_length=1024,
-                truncation=True,
-                padding="max_length",  #  uniform length for all sequences
-            )
+            input_encodings = self.tokenizer(example_batch['dialogue'] , max_length = 1024, truncation = True )
 
-            # Tokenize target/summary
-            target_encodings = self.tokenizer(
-                example_batch["summary"],
-                max_length=128,
-                truncation=True,
-                padding="max_length",
-                return_tensors=None,  #  outputs are lists, not tensors
-            )
+            with self.tokenizer.as_target_tokenizer():
+                target_encodings = self.tokenizer(example_batch['summary'], max_length = 128, truncation = True )
 
             return {
-                "input_ids": input_encodings["input_ids"],
-                "attention_mask": input_encodings["attention_mask"],
-                "labels": target_encodings["input_ids"],
+                'input_ids' : input_encodings['input_ids'],
+                'attention_mask': input_encodings['attention_mask'],
+                'labels': target_encodings['input_ids']
             }
         except KeyError as e:
             logging.error(f"Missing required keys in dataset: {str(e)}")
@@ -65,7 +54,7 @@ class DataTransformation:
             logging.info("Tokenization completed.")
 
             # Save transformed data
-            save_path = os.path.join(self.config.transform_data, "transform")
+            save_path = os.path.join(self.config.dir ,"samsum_dataset")
             dataset_pt.save_to_disk(save_path)
             logging.info(f"Transformed data saved successfully at {save_path}.")
 

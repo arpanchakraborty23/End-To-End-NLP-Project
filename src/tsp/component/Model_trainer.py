@@ -57,20 +57,18 @@ class ModelTrainer:
 
             # Define training arguments
             training_args = TrainingArguments(
-                output_dir=self.config.dir,
-                num_train_epochs=self.config.num_train_epochs,
-                warmup_steps=self.config.warmup_steps,
-                weight_decay=self.config.weight_decay,
-                per_device_train_batch_size=self.config.per_device_train_batch_size,
-                per_device_eval_batch_size=self.config.per_device_train_batch_size,
-                logging_steps=self.config.logging_steps,
-                eval_steps=self.config.eval_steps,
-                save_steps=self.config.save_steps,
-                gradient_accumulation_steps=self.config.gradient_accumulation_steps,
-                evaluation_strategy="steps",  # Evaluate at regular steps
-                save_total_limit=3,  # Limit the number of saved checkpoints
-                report_to="none",  # Prevent errors if TensorBoard isn't set up
-            )
+            output_dir=self.config.dir, 
+            num_train_epochs=1, 
+            warmup_steps=500,
+            per_device_train_batch_size=1, 
+            per_device_eval_batch_size=1,
+            weight_decay=0.01, 
+            logging_steps=10,
+            evaluation_strategy='steps', 
+            eval_steps=500, 
+            save_steps=1e6,
+            gradient_accumulation_steps=16
+            ) 
 
             logging.info(f"Training arguments: {training_args}")
 

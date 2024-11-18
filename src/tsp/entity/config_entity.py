@@ -13,7 +13,7 @@ class DataTransformationConfig:
     dir: Path
     data_path:Path
     tokenizer:str
-    transform_data:Path
+
 
 @dataclass
 class ModelTrainerConfig:

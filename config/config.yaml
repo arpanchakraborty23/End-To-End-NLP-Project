@@ -10,9 +10,9 @@ Data_Transformation:
   dir: Artifacts/data_transformation
   data_path: Artifacts\data_ingestion\data\samsum_dataset
   tokenizer: google/pegasus-cnn_dailymail
-  transform_data: Artifacts/data_transformation
+
   
 Model_Trainer:
   dir: Artifacts/model_Trainer
-  data_path: Artifacts\data_transformation\transform
+  data_path: Artifacts\data_transformation\samsum_dataset
   model: google/pegasus-cnn_dailymail
