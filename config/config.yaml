@@ -8,11 +8,19 @@ Data_Ingestion:
 
 Data_Transformation:
   dir: Artifacts/data_transformation
-  data_path: Artifacts\data_ingestion\data\samsum_dataset
+  data_path: /teamspace/studios/this_studio/End-To-End-NLP-Project/Artifacts/data_ingestion/data/samsum_dataset
   tokenizer: google/pegasus-cnn_dailymail
 
   
 Model_Trainer:
   dir: Artifacts/model_Trainer
-  data_path: Artifacts\data_transformation\samsum_dataset
+  data_path: /teamspace/studios/this_studio/End-To-End-NLP-Project/Artifacts/data_transformation/samsum_dataset
   model: google/pegasus-cnn_dailymail
+
+Model_Evaluation:
+    dir: Artifacts/model_evaluation
+    data_path: /teamspace/studios/this_studio/End-To-End-NLP-Project/Artifacts/data_transformation/samsum_dataset
+    model_path: /teamspace/studios/this_studio/End-To-End-NLP-Project/Artifacts/model_Trainer/pegasus_model
+    tokenizer_path: /teamspace/studios/this_studio/End-To-End-NLP-Project/Artifacts/model_Trainer/tokenizer
+    metric_file:  Artifacts/model_evaluation/metrics.csv
+

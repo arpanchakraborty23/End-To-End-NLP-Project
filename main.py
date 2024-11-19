@@ -5,6 +5,7 @@ from src.tsp.config.config_manager import ConfiManager
 from src.tsp.component.Data_Ingestion import DataIngestion
 from src.tsp.component.Data_Transformation import DataTransformation
 from src.tsp.component.Model_trainer import ModelTrainer
+from src.tsp.component.model_evaluation import ModelEvaluation
 
 
 
@@ -36,6 +37,14 @@ class TrainPipline:
             model_trainer.initiate_model_trainer()
 
             logging.info(f'<<<<<<<<<<<<<<<<<<<<<<< Model Trainer completed >>>>>>>>>>>>>>>>>>')
+
+            logging.info(f'<<<<<<<<<<<<<<<<<<<<< Model Evaluation Started >>>>>>>>>>>>>>>>>>>>>>>')
+
+            model_eval_config=config.get_model_eval_config()
+            model_eval=ModelEvaluation(config=model_eval_config)
+            model_eval.evaluate()
+       
+            logging.info(f'<<<<<<<<<<<<<<<<<<<<<<< Model Evaluation completed >>>>>>>>>>>>>>>>>>')
             
         except Exception as e:
             logging.info(f'Error cooured {str(e)}')

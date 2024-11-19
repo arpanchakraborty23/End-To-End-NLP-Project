@@ -4,7 +4,7 @@ import sys
 from src.tsp.utils.main_utils import read_yaml,create_dir
 from src.tsp.logging.logger import logging
 from src.tsp.exception.exception import CustomException
-from src.tsp.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig
+from src.tsp.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvaluationConfig
 from src.tsp.constants import *
 
 class ConfiManager:
@@ -68,4 +68,18 @@ class ConfiManager:
         except Exception as e:
             logging.info(f' erorr in model train config {str(e)}')
             raise CustomException(e,sys)
-    
+    def get_model_eval_config(self):
+        try:
+            config=self.config.Model_Evaluation
+
+            model_eval_config=ModelEvaluationConfig(
+                dir=config.dir,
+                data_path=config.data_path,
+                model_path=config.model_path,
+                tokenizer_path=config.tokenizer_path,
+                metric_file=config.metric_file
+                )
+            return model_eval_config
+        except Exception as e:
+            logging.info(f'error in model eval {str(e)}')
+            raise CustomException(e,sys)

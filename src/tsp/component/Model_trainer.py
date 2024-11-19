@@ -1,6 +1,7 @@
 import os
 import sys
 import torch
+from datetime import datetime
 from transformers import (
     AutoTokenizer,
     AutoModelForSeq2SeqLM,
@@ -18,20 +19,9 @@ from src.tsp.entity.config_entity import ModelTrainerConfig
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig) -> None:
         self.config = config
-        self._validate_config()
+        self.timestamp=datetime.now()
+        print(f'traning time:{datetime.now()}')
         logging.info("ModelTrainer initialized successfully.")
-
-    def _validate_config(self):
-        required_attrs = [
-            "model",
-            "data_path",
-            "dir",
-            "num_train_epochs",
-            "per_device_train_batch_size",
-        ]
-        missing = [attr for attr in required_attrs if not getattr(self.config, attr, None)]
-        if missing:
-            raise ValueError(f"Missing required config attributes: {', '.join(missing)}")
 
     def read_data(self, data_path: str):
         try:
@@ -58,16 +48,15 @@ class ModelTrainer:
             # Define training arguments
             training_args = TrainingArguments(
             output_dir=self.config.dir, 
-            num_train_epochs=1, 
-            warmup_steps=500,
-            per_device_train_batch_size=1, 
-            per_device_eval_batch_size=1,
-            weight_decay=0.01, 
-            logging_steps=10,
+            num_train_epochs=self.config.num_train_epochs, 
+            warmup_steps=self.config.warmup_steps,
+            per_device_train_batch_size=self.config.per_device_train_batch_size, 
+            weight_decay=self.config.weight_decay, 
+            logging_steps=self.config.logging_steps,
             evaluation_strategy='steps', 
-            eval_steps=500, 
-            save_steps=1e6,
-            gradient_accumulation_steps=16
+            eval_steps=self.config.eval_steps, 
+            save_steps=self.config.save_steps,
+            gradient_accumulation_steps=self.config.gradient_accumulation_steps
             ) 
 
             logging.info(f"Training arguments: {training_args}")
@@ -86,15 +75,7 @@ class ModelTrainer:
             logging.info("Starting model training...")
             trainer.train()
 
-            # Save the model and tokenizer
-            model_path = os.path.join(self.config.dir, "pegasus_model")
-            tokenizer_path = os.path.join(self.config.dir, "tokenizer")
-
-            pegasus_model.save_pretrained(model_path)
-            logging.info(f"Model saved successfully at {model_path}.")
-
-            tokenizer.save_pretrained(tokenizer_path)
-            logging.info("Training completed successfully.")
+            logging.info('model traning completed')
 
             return pegasus_model, tokenizer
         except Exception as e:
@@ -109,7 +90,18 @@ class ModelTrainer:
             dataset = self.read_data(self.config.data_path)
 
             # Train the model
-            self.train(dataset)
+            pegasus_model, tokenizer=self.train(dataset)
+            print(f'traning  time:{datetime.now() - self.timestamp}')
+
+            # Save the model and tokenizer
+            model_path = os.path.join(self.config.dir, "pegasus_model")
+            tokenizer_path = os.path.join(self.config.dir, "tokenizer")
+
+            pegasus_model.save_pretrained(model_path)
+            logging.info(f"Model saved successfully at {model_path}.")
+
+            tokenizer.save_pretrained(tokenizer_path)
+            logging.info("Training completed successfully.")
 
         except Exception as e:
             logging.error(f"Error in model trainer: {str(e)}")
