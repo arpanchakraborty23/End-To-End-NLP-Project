@@ -1,0 +1,15 @@
+artifact_uri: file:///teamspace/studios/this_studio/End-To-End-NLP-Project/mlruns/0/22367a169d2a483c9582adc170b80420/artifacts
+end_time: 1731995076903
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 22367a169d2a483c9582adc170b80420
+run_name: Artifacts/model_Trainer
+run_uuid: 22367a169d2a483c9582adc170b80420
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1731994918558
+status: 3
+tags: []
+user_id: zeus

@@ -23,4 +23,5 @@ jinja2
 endpoints
 mlflow
 dvc
+evaluate
 -e .

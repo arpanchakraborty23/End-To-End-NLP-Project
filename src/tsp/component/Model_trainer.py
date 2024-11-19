@@ -67,7 +67,7 @@ class ModelTrainer:
                 args=training_args,
                 tokenizer=tokenizer,
                 data_collator=data_collator,
-                train_dataset=dataset["train"],
+                train_dataset=dataset["test"],
                 eval_dataset=dataset["validation"],
             )
 

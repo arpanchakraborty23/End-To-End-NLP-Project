@@ -7,6 +7,7 @@ import evaluate
 from src.tsp.entity.config_entity import ModelEvaluationConfig
 from src.tsp.logging.logger import logging
 from src.tsp.exception.exception import CustomException
+import sys,os
 
 class ModelEvaluation:
     def __init__(self,config:ModelEvaluationConfig)-> None:
@@ -80,7 +81,10 @@ class ModelEvaluation:
             rouge_dict = {rn: score[rn] for rn in rouge_names}
 
             df = pd.DataFrame(rouge_dict, index = ['pegasus'] )
-            df.to_csv(self.config.metric_file, index=False)
+           
+            print(df.head())
+            os.makedirs(os.path.dirname(self.config.metric_file))
+            df.to_csv(self.config.metric_file)
 
         except Exception as e:
             raise CustomException(e,sys)
